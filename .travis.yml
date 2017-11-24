@@ -23,6 +23,8 @@ before_script:
 script:
   - julia build_tarballs.jl
 
+after_script:
+  - rm -rf $(julia -e 'println(Pkg.dir("BinaryBuilder","deps","root"))')
 
 deploy:
     provider: releases
