@@ -32,7 +32,7 @@ api_key:
     secure: p3D7Qm0CtV2vJYQIKfFVJiAgJigTKB2y6nEznumBRiAzVF2UkJJbKErmVtMKXIoYHBg4te+Md0rNtohEeI+zTrex0s51u/CbfKMiDg52aqwxX6XUYpeNlL5TTd4qENM+5hzo3Evs+9Qidy8iABftuLMfnOBFQIkh9BOlI5I8trl7UrlE0CzvL67uSTSqNDUFd2pNHwyqjhYzOU0s445MvFQnZPh2C29AmHIJkWnI332BmH+Ym0YatAeRyl/Oi09eZX9CGdBVuU75zagqVaH9YnIE4hCO1KO5WZxXOVTlS9X82EeVgWS+l2ecSFOiJpBZQCjZth6QvjvcG6m930Lr2rUa2WFlE47Qr46vhtjMUcroOkouA36lSHdLy1OskaubYQsYC5ixE2cF0+XW9/xqyzQbThV3FneVtb+Zm4bCFRkjsMVObtubYgIYyjbWz9H2Nj4HKlCtK9Ys3ZCOnbXcSxiEGP0k/LJbQ2oKzUhpMQZRKYHon3s/rrsvHwZXbwf9d2ksQhMdThPvEr47ELDVfktOOa1Eww7KFbnh3PYLAlVzz3/EnETTktl37S8nMSKFFR4hr2vQeKm3g7ik2hBylXHzETIjnlFOWUnO2Kpcc5nmQpnH7I4hQhNsg+oOrqyIRFCDFwFh2Dcxr5lyUAbF6nl7k62bGqo/8zSpZanzBXo=
 file_glob: true
 file: products/*.tar.gz
-    skip_cleanup: true
-    on:
-        repo: Keno/IConvBuilder
-        tags: true
+skip_cleanup: true
+on:
+    repo: Keno/IConvBuilder
+    tags: true
