@@ -14,10 +14,12 @@ cache:
 env:
   global:
     - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  secure: "sj1DkEWapxar1C9DMGfIxfAIGWxyWFcm1S4DBjXs5/1+jXECIse2Baz1Eev8pYyh0WcZdE7JJZbST1VBd9NdoKo9LWpKE1MVXKqzI9k5IOMMmG62QgqszWbe7Ix5dKTFXG4hmgwSMbaoeF1c+df/3qdATsvgeo17lZroZSXgGjoCmTEbpih7Gxf/XdYzZokYTt4JVaqBlq0WBkz2ZbmJ2gd+rRVBwrSRnsmpY0Hx2QwdC+SDIMqTzuUmmC8CIbfGPOIrXsWYjCQuYu1/0jlbVSnl0ebNwHp7DCW+5dQaJhd1eiotaHIgbkvgUkhPd6Wgzm8g4NnOTqH5JHW1lvXU4pKzPIxY9OLqpFFnwx8jVIC3l2JIGChq2nb8hQCHIZ/8xEOtawT4rQ/aQbGhIQfqr5z7jLMcgXeOEDZD9nHnEZLXs2pSaxLrNvEvRqKoNid7SSUuIAbTTrbSNGRpcQeXtHeQvdK6VyyrHMHDpOhq/LwTFx+7nzn0WNoMRlGAojLRCByn/wZ76f34t74HF7iF4E8i3raP5H0KFF6JGcHu5vHh1xXTcjvLadzFbsNeXyBNeM0ZGeyPX2NVG3GDi4/yMO0sydIuq2Klof8u+ELzvaGbI1aOgKqwJbcKlWKFIHYDpcsBEWlsyntiZXQpzSd2f0Lc4ItcX5+/kcywiRGX85I="
 sudo: required
 
 # Before anything else, get the latest versions of things
 before_script:
+  - echo $SECUREVAR
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
 
