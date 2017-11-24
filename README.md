@@ -7,3 +7,5 @@ This repository builds binary artifacts for the libiconv project. Binary artifac
 on this repository.
 
 This repository was created using [BinaryBuilder.jl](https://github.com/JuliaPackaging/BinaryBuilder.jl)
+
+Test
