@@ -8,6 +8,7 @@ notifications:
 git:
   depth: 99999999
 cache:
+  timeout: 1000
   directories:
     - downloads
 env:
@@ -25,9 +26,6 @@ script:
 
 before_cache:
   - rm -rf $(julia -e 'println(Pkg.dir("BinaryBuilder","deps","root"))')
-
-cache:
-  timeout: 1000
 
 deploy:
     provider: releases
