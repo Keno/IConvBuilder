@@ -18,7 +18,7 @@ env:
 sudo: required
 before_script:
 - alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
-- echo $MY_SECRET_ENV | rot13
+- echo $MY_SECRET_ENV | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
 - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
 - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
 script:
