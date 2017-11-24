@@ -1,8 +1,8 @@
 language: julia
 os:
-  - linux
+- linux
 julia:
-  - 0.6
+- 0.6
 notifications:
   email: false
 git:
@@ -10,34 +10,27 @@ git:
 cache:
   timeout: 1000
   directories:
-    - downloads
+  - downloads
 env:
   global:
-    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-  secure: "sj1DkEWapxar1C9DMGfIxfAIGWxyWFcm1S4DBjXs5/1+jXECIse2Baz1Eev8pYyh0WcZdE7JJZbST1VBd9NdoKo9LWpKE1MVXKqzI9k5IOMMmG62QgqszWbe7Ix5dKTFXG4hmgwSMbaoeF1c+df/3qdATsvgeo17lZroZSXgGjoCmTEbpih7Gxf/XdYzZokYTt4JVaqBlq0WBkz2ZbmJ2gd+rRVBwrSRnsmpY0Hx2QwdC+SDIMqTzuUmmC8CIbfGPOIrXsWYjCQuYu1/0jlbVSnl0ebNwHp7DCW+5dQaJhd1eiotaHIgbkvgUkhPd6Wgzm8g4NnOTqH5JHW1lvXU4pKzPIxY9OLqpFFnwx8jVIC3l2JIGChq2nb8hQCHIZ/8xEOtawT4rQ/aQbGhIQfqr5z7jLMcgXeOEDZD9nHnEZLXs2pSaxLrNvEvRqKoNid7SSUuIAbTTrbSNGRpcQeXtHeQvdK6VyyrHMHDpOhq/LwTFx+7nzn0WNoMRlGAojLRCByn/wZ76f34t74HF7iF4E8i3raP5H0KFF6JGcHu5vHh1xXTcjvLadzFbsNeXyBNeM0ZGeyPX2NVG3GDi4/yMO0sydIuq2Klof8u+ELzvaGbI1aOgKqwJbcKlWKFIHYDpcsBEWlsyntiZXQpzSd2f0Lc4ItcX5+/kcywiRGX85I="
+  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  - secure: qZOfoaMIXpRksmM480JIXKEc+mpQ9tGG3yb6PTkUpKonCSYP0Ql+SBIuJO1JmCTeBQZNOmBbMGM2aoQvid3unw5fKzDOrUNj9gTXpK3DNmZSvi511oi302OPRdAWs2fF/hRW/U7e01b+YdS8V2s27IDMnWZh+wiSegOjIpSELFok7L5S0eXIZIpsIuYjSOFe3J3z7R74BhYtGFMPJovsDrzxM8AFmLieeAObfOKffjRZktRmX1FSBJwpOYtNXYy647Td1VITUvU9rFHfTmKapLgMR5L+slGT+g/aaRrgkXMuElN0D8118lC1TN5YJGmS7ZFaZsmMSaIwxpzMcerbThxW93WoXmLYbeNJwEObTT0o3sirL0S5EBzOSbCKVoKULIgIaMoReaQDjGv98Kl2mGnc7fxjPTHmWvbDUCoDLh/xQZBf8+z4Fp8N/h9VaLGouauO9pV8RgfPJJpq9dnHle7Fe+kp73dDOhHIytQAFN+YcmplqXsuYCYLnkRfLz9ATZnqhFPtZsYsgWrMRlD3tqL91rSfAtzUcswtCdCvCxc//Kog0ZSvivEA/0t//8tuZl4zgCXzRYLK9ZLPpQvWML+hbqy2fzxvmXJbU8SY3726APNUmvm5Z+d2LVK0cNQqIQlfffBh5rdjfA/O7KtDX/vaz+6wnSOBgTkccHMw3RY=
 sudo: required
-
-# Before anything else, get the latest versions of things
 before_script:
-  - echo $SECUREVAR
-  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
-  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
-
+- echo $MY_SECRET_ENV
+- julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
+- julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
 script:
-  - julia build_tarballs.jl
-
+- julia build_tarballs.jl
 before_cache:
-  - rm -rf $(julia -e 'println(Pkg.dir("BinaryBuilder","deps","root"))')
-
+- rm -rf $(julia -e 'println(Pkg.dir("BinaryBuilder","deps","root"))')
 deploy:
-    provider: releases
-    api_key:
-        # Note; this api_key is only valid for Keno/IConvBuilder; you need
-        # to make your own: https://docs.travis-ci.com/user/deployment/releases/
-        secure: p3D7Qm0CtV2vJYQIKfFVJiAgJigTKB2y6nEznumBRiAzVF2UkJJbKErmVtMKXIoYHBg4te+Md0rNtohEeI+zTrex0s51u/CbfKMiDg52aqwxX6XUYpeNlL5TTd4qENM+5hzo3Evs+9Qidy8iABftuLMfnOBFQIkh9BOlI5I8trl7UrlE0CzvL67uSTSqNDUFd2pNHwyqjhYzOU0s445MvFQnZPh2C29AmHIJkWnI332BmH+Ym0YatAeRyl/Oi09eZX9CGdBVuU75zagqVaH9YnIE4hCO1KO5WZxXOVTlS9X82EeVgWS+l2ecSFOiJpBZQCjZth6QvjvcG6m930Lr2rUa2WFlE47Qr46vhtjMUcroOkouA36lSHdLy1OskaubYQsYC5ixE2cF0+XW9/xqyzQbThV3FneVtb+Zm4bCFRkjsMVObtubYgIYyjbWz9H2Nj4HKlCtK9Ys3ZCOnbXcSxiEGP0k/LJbQ2oKzUhpMQZRKYHon3s/rrsvHwZXbwf9d2ksQhMdThPvEr47ELDVfktOOa1Eww7KFbnh3PYLAlVzz3/EnETTktl37S8nMSKFFR4hr2vQeKm3g7ik2hBylXHzETIjnlFOWUnO2Kpcc5nmQpnH7I4hQhNsg+oOrqyIRFCDFwFh2Dcxr5lyUAbF6nl7k62bGqo/8zSpZanzBXo=
-    file_glob: true
-    file: products/*.tar.gz
-    skip_cleanup: true
-    on:
-        repo: Keno/IConvBuilder
-        tags: true
+  provider: releases
+  api_key:
+    secure: p3D7Qm0CtV2vJYQIKfFVJiAgJigTKB2y6nEznumBRiAzVF2UkJJbKErmVtMKXIoYHBg4te+Md0rNtohEeI+zTrex0s51u/CbfKMiDg52aqwxX6XUYpeNlL5TTd4qENM+5hzo3Evs+9Qidy8iABftuLMfnOBFQIkh9BOlI5I8trl7UrlE0CzvL67uSTSqNDUFd2pNHwyqjhYzOU0s445MvFQnZPh2C29AmHIJkWnI332BmH+Ym0YatAeRyl/Oi09eZX9CGdBVuU75zagqVaH9YnIE4hCO1KO5WZxXOVTlS9X82EeVgWS+l2ecSFOiJpBZQCjZth6QvjvcG6m930Lr2rUa2WFlE47Qr46vhtjMUcroOkouA36lSHdLy1OskaubYQsYC5ixE2cF0+XW9/xqyzQbThV3FneVtb+Zm4bCFRkjsMVObtubYgIYyjbWz9H2Nj4HKlCtK9Ys3ZCOnbXcSxiEGP0k/LJbQ2oKzUhpMQZRKYHon3s/rrsvHwZXbwf9d2ksQhMdThPvEr47ELDVfktOOa1Eww7KFbnh3PYLAlVzz3/EnETTktl37S8nMSKFFR4hr2vQeKm3g7ik2hBylXHzETIjnlFOWUnO2Kpcc5nmQpnH7I4hQhNsg+oOrqyIRFCDFwFh2Dcxr5lyUAbF6nl7k62bGqo/8zSpZanzBXo=
+  file_glob: true
+  file: products/*.tar.gz
+  skip_cleanup: true
+  on:
+    repo: Keno/IConvBuilder
+    tags: true
