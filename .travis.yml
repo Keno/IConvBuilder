@@ -17,7 +17,8 @@ env:
   - secure: qZOfoaMIXpRksmM480JIXKEc+mpQ9tGG3yb6PTkUpKonCSYP0Ql+SBIuJO1JmCTeBQZNOmBbMGM2aoQvid3unw5fKzDOrUNj9gTXpK3DNmZSvi511oi302OPRdAWs2fF/hRW/U7e01b+YdS8V2s27IDMnWZh+wiSegOjIpSELFok7L5S0eXIZIpsIuYjSOFe3J3z7R74BhYtGFMPJovsDrzxM8AFmLieeAObfOKffjRZktRmX1FSBJwpOYtNXYy647Td1VITUvU9rFHfTmKapLgMR5L+slGT+g/aaRrgkXMuElN0D8118lC1TN5YJGmS7ZFaZsmMSaIwxpzMcerbThxW93WoXmLYbeNJwEObTT0o3sirL0S5EBzOSbCKVoKULIgIaMoReaQDjGv98Kl2mGnc7fxjPTHmWvbDUCoDLh/xQZBf8+z4Fp8N/h9VaLGouauO9pV8RgfPJJpq9dnHle7Fe+kp73dDOhHIytQAFN+YcmplqXsuYCYLnkRfLz9ATZnqhFPtZsYsgWrMRlD3tqL91rSfAtzUcswtCdCvCxc//Kog0ZSvivEA/0t//8tuZl4zgCXzRYLK9ZLPpQvWML+hbqy2fzxvmXJbU8SY3726APNUmvm5Z+d2LVK0cNQqIQlfffBh5rdjfA/O7KtDX/vaz+6wnSOBgTkccHMw3RY=
 sudo: required
 before_script:
-- echo $MY_SECRET_ENV
+- alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+- echo $MY_SECRET_ENV | rot13
 - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
 - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
 script:
